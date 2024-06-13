@@ -91,3 +91,139 @@ form .row {
     border-color: #e0e0e0;
     color: #6c757d;
 }
+
+.container {
+    padding: 1rem;
+}
+
+.filters,
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.filters mat-form-field,
+.actions mat-form-field {
+    flex: 1;
+    min-width: 150px;
+}
+
+.frequency {
+    display: flex;
+    align-items: center;
+}
+
+.frequency mat-form-field {
+    flex: none;
+}
+
+.actions {
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+
+/* app.component.css */
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1fffa;
+    padding: 10px;
+    border: 2px solid aquamarine;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.col mat-icon {
+    margin-right: 5px;
+    color: green;
+}
+
+.col span {
+    margin-right: 10px;
+}
+
+.col button {
+    margin-left: 10px;
+}
+
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+    background-color: #ffffff;
+    border: 1px solid aquamarine;
+    border-radius: 12px;
+}
+
+.mdc-line-ripple::before {
+    border: none;
+    border-bottom-width: 0px !important;
+}
+
+.mat-mdc-standard-chip.mdc-evolution-chip--selected:not(.mdc-evolution-chip--disabled) {
+    background-color: #ffffff !important;
+    border: 1px solid wheat !important;
+}
+
+.mat-mdc-chip-action-label,
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__checkmark {
+    color: rgb(254, 210, 130) !important;
+}
+
+.frequency-input {
+    display: flex;
+    align-items: center;
+    background-color: #e0ffff;
+    /* Light cyan background */
+    border: 1px solid #00ced1;
+    /* Dark cyan border */
+    border-radius: 25px;
+    padding: 5px;
+    width: 140px;
+}
+
+.frequency-input .remove-button {
+    background-color: #f0f0f0;
+    /* Light gray background for remove button */
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.frequency-input .frequency-field {
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 12px;
+    flex: 1;
+    width: 70px !important;
+    margin: 0 5px;
+}
+
+.frequency-input .add-button {
+    background-color: #8a2be2;
+    /* Blue violet background for add button */
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.hidden-option {
+    display: none;
+}

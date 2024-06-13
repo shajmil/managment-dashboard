@@ -30,7 +30,7 @@
         </div>
     </nav>
 
-    <div class="row w-100 " style="background-color: #faf9ff">
+    <div class="row w-100 align-items-start" style="background-color: #faf9ff">
         <div class="col-2 ">
 
 
@@ -117,119 +117,183 @@ radio_button_checked
                     </div>
 
                 </div>
-                <div class="p-2 border border-2" style="background-color: #f1fffa;border-color: aquamarine !important;">
+                <!-- app.component.html -->
+                <div class="container" style="background-color: #f1fffa; border: 2px solid aquamarine;">
+                    <div class="  row mb-3">
+                        <section class=" col-6 d-flex gap-3">
 
-                    <form>
+                            <mat-form-field class="custom-select " style="width: 245px !important;">
+                                <mat-select placeholder="FLEET" multiple [(ngModel)]="selectedFleets" (selectionChange)="onFleetChange()">
+                                    <mat-option *ngFor="let fleet of fleets" [value]="fleet">{{fleet}}</mat-option>
+                                </mat-select>
+
+                            </mat-form-field>
+                            <mat-chip-listbox class="mat-mdc-chip-set-stacked w-100" aria-label="Selected Fleets">
+                                <mat-chip-option class="" style="width: 120px;" *ngFor="let fleet of selectedFleets" [value]="fleet" selected>{{fleet}}</mat-chip-option>
+                            </mat-chip-listbox>
+                        </section>
+                        <section class=" col-6 d-flex gap-3">
+
+                            <mat-form-field style="width: 245px !important;">
+                                <mat-select placeholder="REGULATOR" multiple [(ngModel)]="selectedRegulators">
+                                    <mat-option *ngFor="let regulator of filteredRegulators" [value]="regulator">{{regulator}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-chip-listbox class="mat-mdc-chip-set-stacked w-100 " aria-label="Selected Fleets">
+                                <mat-chip-option style="width: 120px;" *ngFor="let Redulator of selectedRegulators" [value]="Redulator" selected>{{Redulator}}</mat-chip-option>
+                            </mat-chip-listbox>
+                        </section>
+                        <section class=" col-6 d-flex gap-3">
+
+
+                            <mat-form-field style="width: 245px !important;">
+                                <mat-select placeholder="STATION" multiple [(ngModel)]="selectedStations" (selectionChange)="onStationChange()">
+                                    <mat-option *ngFor="let station of filteredStations" [value]="station">{{station}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-chip-listbox class="mat-mdc-chip-set-stacked w-100" aria-label="Selected Fleets">
+                                <mat-chip-option style="width: 120px;" *ngFor="let station of selectedStations" [value]="station" selected>{{station}}</mat-chip-option>
+                            </mat-chip-listbox>
+                        </section>
+                        <section class=" col-6 d-flex gap-3">
+
+
+                            <mat-form-field style="width: 245px !important;">
+                                <mat-select placeholder="TASK" multiple [(ngModel)]="selectedTasks">
+                                    <mat-option *ngFor="let task of filteredTasks" [value]="task">{{task}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </section>
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="fleet">Fleet</label>
-                                <select id="fleet" class="form-control">
-      <option>A320-212</option>
-      <option>A320-212N</option>
-    </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="station">Station</label>
-                                <select id="station" class="form-control">
-      <option>HYD</option>
-      <option>BLR</option>
-    </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="regulator">Regulator</label>
-                                <select id="regulator" class="form-control">
-      <option>DGCA</option>
-    </select>
-                            </div>
-                        </div>
 
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label for="task">Task</label>
-                                <input id="task" type="text" class="form-control" />
-                            </div>
-                            <div class="col-md-2">
-                                <label for="frequency1">Frequency</label>
-                                <input id="frequency1" type="number" class="form-control" value="12000" />
-                            </div>
-                            <div class="col-md-2">
-                                <label for="frequency2">Frequency</label>
-                                <input id="frequency2" type="number" class="form-control" value="10000" />
-                            </div>
-                            <div class="col-md-2">
-                                <label for="frequency3">Frequency</label>
-                                <input id="frequency3" type="number" class="form-control" value="24" />
-                            </div>
-                            <div class="col-md-2">
-                                <label for="tcs">TCS</label>
-                                <div class="form-check form-switch">
-                                    <input id="tcs" type="checkbox" class="form-check-input" checked />
+
+
+                            <div class="frequency   col-6 d-flex gap-3">
+                                <div class="frequency-input col-3">
+
+                                    <input matInput type="number" placeholder="Frequency" [(ngModel)]="frequencyValue" class="frequency-field">
+                                    <button (click)=" frequencyValue =frequencyValue+ 1;" mat-icon-button color="primary" class="add-button d-flex justify-content-center align-items-center">
+                                  <span style="font-size: 20px;">+</span></button>
+                                </div>
+                                <div class="frequency-input col-3">
+
+                                    <input matInput type="number" placeholder="Frequency" [(ngModel)]="frequencyValue2" class="frequency-field">
+                                    <button (click)=" frequencyValue2 =frequencyValue2+ 1;" mat-icon-button color="primary" class="add-button d-flex justify-content-center align-items-center">
+                                  <span style="font-size: 20px;">+</span></button>
+                                </div>
+                                <div class="frequency-input col-3">
+
+                                    <input matInput type="number" placeholder="Frequency" [(ngModel)]="frequencyValue3" class="frequency-field">
+                                    <button (click)=" frequencyValue3 =frequencyValue3+ 1;" mat-icon-button color="primary" class="add-button d-flex justify-content-center align-items-center">
+                                  <span style="font-size: 20px;">+</span></button>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-3 ms-3">
 
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label>Auditee</label>
-                                <p>Ashley Robinson</p>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="date">Date</label>
-                                <input id="date" type="date" class="form-control" value="2021-02-09" />
-                            </div>
-                            <div class="col-md-4">
-                                <label>Status</label>
-                                <button type="button" class="btn btn-primary">Accept</button>
-                            </div>
-                        </div>
-                    </form>
 
-                    <div class="row mt-3">
-                        <div class="col">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>S.n</th>
-                                        <th>Task</th>
-                                        <th>Type</th>
-                                        <th>Desc</th>
-                                        <th>FQY</th>
-                                        <th>Spare</th>
-                                        <th>Qty</th>
-                                        <th>Tool</th>
-                                        <th>MH</th>
-                                        <th>Attachment</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><a href="#">32-05-07-400-A</a></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <button class="btn btn-link p-0">
-            <i class="bi bi-paperclip"></i>
-          </button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-link p-0">
-            <i class="bi bi-trash"></i>
-          </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <mat-slide-toggle color="primary">TCS</mat-slide-toggle>
+                            </div>
+                            <div class="col-1">
+
+                                <button mat-raised-button color="primary" (click)="generate()">Generate</button>
+                            </div>
                         </div>
                     </div>
 
+
+
+                    <div class="actions">
+                        <div class="row">
+                            <div class="col">
+                                <mat-icon>check_circle</mat-icon>
+                                <span>TCS AVL</span>
+                            </div>
+                            <div class="col">
+                                <mat-icon>cancel</mat-icon>
+                                <span>TCS N.AVL</span>
+                            </div>
+                            <div class="col">
+                                <mat-icon>check_circle</mat-icon>
+                                <span>MH</span>
+                            </div>
+                            <div class="col">
+                                <span>Auditee: Ashley Robinson</span>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Date</mat-label>
+                                    <input matInput [matDatepicker]="datePicker" [value]="date">
+                                    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #datePicker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <button mat-raised-button color="primary">Accept</button>
+                            </div>
+                            <div class="col">
+                                <button mat-raised-button color="accent">Process PO</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container matColumnDef="sno">
+                            <th mat-header-cell *matHeaderCellDef> S.n </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="task">
+                            <th mat-header-cell *matHeaderCellDef> TASK </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a href="#">{{element.task}}</a>
+                            </td>
+                        </ng-container>
+                        <!-- Add more columns here as required -->
+                        <ng-container matColumnDef="type">
+                            <th mat-header-cell *matHeaderCellDef> TYPE </th>
+                            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="desc">
+                            <th mat-header-cell *matHeaderCellDef> DESC </th>
+                            <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="fqy">
+                            <th mat-header-cell *matHeaderCellDef> FQY </th>
+                            <td mat-cell *matCellDef="let element"> {{element.fqy}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="spare">
+                            <th mat-header-cell *matHeaderCellDef> SPARE </th>
+                            <td mat-cell *matCellDef="let element"> {{element.spare}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="qty">
+                            <th mat-header-cell *matHeaderCellDef> QTY </th>
+                            <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="tool">
+                            <th mat-header-cell *matHeaderCellDef> TOOL </th>
+                            <td mat-cell *matCellDef="let element"> {{element.tool}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="mh">
+                            <th mat-header-cell *matHeaderCellDef> MH </th>
+                            <td mat-cell *matCellDef="let element"> {{element.mh}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="attachment">
+                            <th mat-header-cell *matHeaderCellDef> Attachment </th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-icon>edit</mat-icon>
+                                <mat-icon>delete</mat-icon>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="remarks">
+                            <th mat-header-cell *matHeaderCellDef> REMARKS </th>
+                            <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
                 </div>
+
                 <div class="row mt-3">
                     <div class="col">
                         <label for="remarks">Remarks</label>
