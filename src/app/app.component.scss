@@ -1,0 +1,93 @@
+.sidebar {
+    padding: 15px;
+    height: 88vh !important;
+}
+
+.nav-link {
+    color: #6c757d;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.blue-btn {
+    color: white;
+    background-color: #040450;
+}
+
+.nav-link.active {
+    color: #4c4cff;
+    font-weight: bold;
+    border-left: 3px solid #4c4cff;
+}
+
+.nav-link .fas {
+    margin-right: 10px;
+}
+
+.nav-link.active .fas {
+    color: #4c4cff;
+}
+
+.container {
+    // background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+form .row {
+    margin-bottom: 10px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: #000;
+}
+
+.btn-link .bi {
+    font-size: 1.2rem;
+}
+
+.d-flex .align-items-center a {
+    font-size: 18px;
+}
+
+.d-flex .align-items-center a:hover {
+    color: #4c4cff;
+    font-weight: bold;
+}
+
+.text-dark {
+    color: #4c4cff !important;
+}
+
+.text-dark.active {
+    color: #4c4cff !important;
+    font-weight: bold;
+    border-bottom: 3px solid #4c4cff;
+}
+
+.btn-group .btn {
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+.btn-group .btn.active {
+    background-color: #4c4cff;
+    border-color: #4c4cff;
+}
+
+.btn-group .btn-outline-secondary {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+    color: #6c757d;
+}
