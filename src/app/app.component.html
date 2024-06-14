@@ -101,7 +101,7 @@ radio_button_checked
             <div class=" w-100 ">
                 <div class="row ">
                     <div class="col">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex gap-4 align-items-center">
                             <a class="me-3 text-decoration-none text-dark d-flex justify-content-center align-items-center" href="#"><span class="material-symbols-outlined">
                               home
                               </span> QMS</a>
@@ -119,50 +119,60 @@ radio_button_checked
                 </div>
                 <!-- app.component.html -->
                 <div class="container" style="background-color: #f1fffa; border: 2px solid aquamarine;">
-                    <div class="  row mb-3">
+                    <div class="  row mb-3" *ngIf="createsection">
                         <section class=" col-6 d-flex gap-3">
 
-                            <mat-form-field class="custom-select " style="width: 245px !important;">
-                                <mat-select placeholder="FLEET" multiple [(ngModel)]="selectedFleets" (selectionChange)="onFleetChange()">
+                            <mat-form-field class="custom-select " style="width: 245px !important; height: 65px;">
+
+                                <mat-select placeholder="FLEET" multiple floatlLabel="never" [(ngModel)]="selectedFleets" (selectionChange)="onFleetChange()">
+                                    <mat-select-trigger>FLEET</mat-select-trigger>
                                     <mat-option *ngFor="let fleet of fleets" [value]="fleet">{{fleet}}</mat-option>
                                 </mat-select>
 
                             </mat-form-field>
                             <mat-chip-listbox class="mat-mdc-chip-set-stacked w-100" aria-label="Selected Fleets">
-                                <mat-chip-option class="" style="width: 120px;" *ngFor="let fleet of selectedFleets" [value]="fleet" selected>{{fleet}}</mat-chip-option>
+                                <mat-chip-option class="" style="width: fit-content;" *ngFor="let fleet of selectedFleets" [value]="fleet" selected>{{fleet}}</mat-chip-option>
                             </mat-chip-listbox>
                         </section>
                         <section class=" col-6 d-flex gap-3">
 
-                            <mat-form-field style="width: 245px !important;">
-                                <mat-select placeholder="REGULATOR" multiple [(ngModel)]="selectedRegulators">
+                            <mat-form-field style="width: 245px !important; height: 65px;">
+                                <mat-select placeholder="REGULATOR" multiple floatlLabel="never" [(ngModel)]="selectedRegulators">
+                                    <mat-select-trigger>REGULATOR</mat-select-trigger>
+
                                     <mat-option *ngFor="let regulator of filteredRegulators" [value]="regulator">{{regulator}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-chip-listbox class="mat-mdc-chip-set-stacked w-100 " aria-label="Selected Fleets">
-                                <mat-chip-option style="width: 120px;" *ngFor="let Redulator of selectedRegulators" [value]="Redulator" selected>{{Redulator}}</mat-chip-option>
+                                <mat-chip-option style="width: fit-content;" *ngFor="let Redulator of selectedRegulators" [value]="Redulator" selected>{{Redulator}}</mat-chip-option>
                             </mat-chip-listbox>
                         </section>
                         <section class=" col-6 d-flex gap-3">
 
 
-                            <mat-form-field style="width: 245px !important;">
-                                <mat-select placeholder="STATION" multiple [(ngModel)]="selectedStations" (selectionChange)="onStationChange()">
+                            <mat-form-field style="width: 245px !important; height: 65px;">
+
+                                <mat-select placeholder="STATION" multiple floatlLabel="never" [(ngModel)]="selectedStations" (selectionChange)="onStationChange()">
+                                    <mat-select-trigger>STATION</mat-select-trigger>
                                     <mat-option *ngFor="let station of filteredStations" [value]="station">{{station}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-chip-listbox class="mat-mdc-chip-set-stacked w-100" aria-label="Selected Fleets">
-                                <mat-chip-option style="width: 120px;" *ngFor="let station of selectedStations" [value]="station" selected>{{station}}</mat-chip-option>
+                                <mat-chip-option style="width: fit-content;" *ngFor="let station of selectedStations" [value]="station" selected>{{station}}</mat-chip-option>
                             </mat-chip-listbox>
                         </section>
                         <section class=" col-6 d-flex gap-3">
+                            <mat-form-field style="width: 245px !important; height: 65px;">
 
-
-                            <mat-form-field style="width: 245px !important;">
-                                <mat-select placeholder="TASK" multiple [(ngModel)]="selectedTasks">
-                                    <mat-option *ngFor="let task of filteredTasks" [value]="task">{{task}}</mat-option>
+                                <mat-select placeholder="TASK" multiple floatlLabel="never" [(ngModel)]="selectedTasks">
+                                    <mat-select-trigger>TASK</mat-select-trigger>
+                                    <mat-option *ngFor="let station of filteredTasks" [value]="station">{{station}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
+                            <mat-chip-listbox class="mat-mdc-chip-set-stacked w-100" aria-label="Selected Fleets">
+                                <mat-chip-option style="width: fit-content;" *ngFor="let station of selectedTasks" [value]="station" selected>{{station}}</mat-chip-option>
+                            </mat-chip-listbox>
+
 
                         </section>
                         <div class="row">
@@ -201,110 +211,171 @@ radio_button_checked
                         </div>
                     </div>
 
-
-
-                    <div class="actions">
+                    <div class="details-section" *ngIf="!createsection">
                         <div class="row">
                             <div class="col">
-                                <mat-icon>check_circle</mat-icon>
-                                <span>TCS AVL</span>
+                                <label>FLEET:</label>
+                                <span>{{ selectedFleets.join(', ') }}</span>
                             </div>
                             <div class="col">
-                                <mat-icon>cancel</mat-icon>
-                                <span>TCS N.AVL</span>
+                                <label>REGULATOR:</label>
+                                <span>{{ selectedRegulators.join(', ') }}</span>
                             </div>
                             <div class="col">
-                                <mat-icon>check_circle</mat-icon>
-                                <span>MH</span>
+                                <label>ID:</label>
+                                <span>PL-A320-2024-01</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>STATION:</label>
+                                <span>{{ selectedStations.join(', ') }}</span>
                             </div>
                             <div class="col">
-                                <span>Auditee: Ashley Robinson</span>
+                                <label>TASK:</label>
+                                <span>{{ selectedTasks.join(', ') }}</span>
                             </div>
                             <div class="col">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Date</mat-label>
-                                    <input matInput [matDatepicker]="datePicker" [value]="date">
-                                    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
-                                    <mat-datepicker #datePicker></mat-datepicker>
-                                </mat-form-field>
+                                <label>FREQUENCY:</label>
+                                <span>{{ frequencyValue }}FH, {{ frequencyValue2 }}FC, {{ frequencyValue3 }}M</span>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col">
-                                <button mat-raised-button color="primary">Accept</button>
-                            </div>
-                            <div class="col">
-                                <button mat-raised-button color="accent">Process PO</button>
+                                <label>Remarks:-</label>
                             </div>
                         </div>
                     </div>
 
-                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                        <ng-container matColumnDef="sno">
-                            <th mat-header-cell *matHeaderCellDef> S.n </th>
-                            <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="task">
-                            <th mat-header-cell *matHeaderCellDef> TASK </th>
-                            <td mat-cell *matCellDef="let element">
-                                <a href="#">{{element.task}}</a>
-                            </td>
-                        </ng-container>
-                        <!-- Add more columns here as required -->
-                        <ng-container matColumnDef="type">
-                            <th mat-header-cell *matHeaderCellDef> TYPE </th>
-                            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="desc">
-                            <th mat-header-cell *matHeaderCellDef> DESC </th>
-                            <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="fqy">
-                            <th mat-header-cell *matHeaderCellDef> FQY </th>
-                            <td mat-cell *matCellDef="let element"> {{element.fqy}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="spare">
-                            <th mat-header-cell *matHeaderCellDef> SPARE </th>
-                            <td mat-cell *matCellDef="let element"> {{element.spare}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="qty">
-                            <th mat-header-cell *matHeaderCellDef> QTY </th>
-                            <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="tool">
-                            <th mat-header-cell *matHeaderCellDef> TOOL </th>
-                            <td mat-cell *matCellDef="let element"> {{element.tool}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="mh">
-                            <th mat-header-cell *matHeaderCellDef> MH </th>
-                            <td mat-cell *matCellDef="let element"> {{element.mh}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="attachment">
-                            <th mat-header-cell *matHeaderCellDef> Attachment </th>
-                            <td mat-cell *matCellDef="let element">
-                                <mat-icon>edit</mat-icon>
-                                <mat-icon>delete</mat-icon>
-                            </td>
-                        </ng-container>
-                        <ng-container matColumnDef="remarks">
-                            <th mat-header-cell *matHeaderCellDef> REMARKS </th>
-                            <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
-                        </ng-container>
+                    <div class="actions">
+                        <button class="icon-btn" (click)="toggleTcsAvl()">
+                            <mat-icon>{{ tcsAvl ? 'visibility' : 'visibility_off' }}</mat-icon>
 
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                </div>
+                            TCS AVL</button>
+                        <button class="icon-btn" (click)="toggleTcsNAvl()">
+                            <mat-icon>{{ tcsNAvl ? 'visibility' : 'visibility_off' }}</mat-icon>
+                            TCS N.AVL</button>
+                        <button class="icon-btn" (click)="toggleMh()">
+                            <mat-icon>{{ mh ? 'visibility' : 'visibility_off' }}</mat-icon>
+                            MH</button>
 
-                <div class="row mt-3">
-                    <div class="col">
-                        <label for="remarks">Remarks</label>
-                        <textarea id="remarks" class="form-control"></textarea>
+                        <span class="auditee icon-btn">Auditee: Ashley Robinson</span>
+                        <div class="date-accept">
+                            <div class="date-picker">
+                                <mat-icon>event</mat-icon> 09 Feb 2021
+                            </div>
+                            <button mat-raised-button color="primary">Accept</button>
+                        </div>
+                        <div class="process-po">
+                            <mat-slide-toggle>Process PO</mat-slide-toggle>
+                        </div>
+
                     </div>
+
+                    <div class="container">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                            <!-- Checkbox Column -->
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox (change)="$event ? selectAllRows() : null" [checked]="isAllSelected()"></mat-checkbox>
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? toggleSelection(element) : null" [checked]="selection.isSelected(element)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+                            <!-- S.n Column -->
+                            <ng-container matColumnDef="sno">
+                                <th mat-header-cell *matHeaderCellDef> S.n </th>
+                                <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                            </ng-container>
+
+                            <!-- TASK Column -->
+                            <ng-container matColumnDef="task">
+                                <th mat-header-cell *matHeaderCellDef> TASK </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <a href="#">{{element.task}}</a>
+                                </td>
+                            </ng-container>
+
+                            <!-- TYPE Column -->
+                            <ng-container matColumnDef="type">
+                                <th mat-header-cell *matHeaderCellDef> TYPE </th>
+                                <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                            </ng-container>
+
+                            <!-- DESC Column -->
+                            <ng-container matColumnDef="desc">
+                                <th mat-header-cell *matHeaderCellDef> DESC </th>
+                                <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
+                            </ng-container>
+
+                            <!-- FQY Column -->
+                            <ng-container matColumnDef="fqy">
+                                <th mat-header-cell *matHeaderCellDef> FQY </th>
+                                <td mat-cell *matCellDef="let element"> {{element.fqy}} </td>
+                            </ng-container>
+
+                            <!-- SPARE Column -->
+                            <ng-container matColumnDef="spare">
+                                <th mat-header-cell *matHeaderCellDef> SPARE </th>
+                                <td mat-cell *matCellDef="let element"> {{element.spare}} </td>
+                            </ng-container>
+
+                            <!-- QTY Column -->
+                            <ng-container matColumnDef="qty">
+                                <th mat-header-cell *matHeaderCellDef> QTY </th>
+                                <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
+                            </ng-container>
+
+                            <!-- TOOL Column -->
+                            <ng-container matColumnDef="tool">
+                                <th mat-header-cell *matHeaderCellDef> TOOL </th>
+                                <td mat-cell *matCellDef="let element"> {{element.tool}} </td>
+                            </ng-container>
+
+                            <!-- MH Column -->
+                            <ng-container matColumnDef="mh">
+                                <th mat-header-cell *matHeaderCellDef> MH </th>
+                                <td mat-cell *matCellDef="let element"> {{element.mh}} </td>
+                            </ng-container>
+
+                            <!-- Attachment Column -->
+                            <ng-container matColumnDef="attachment">
+                                <th mat-header-cell *matHeaderCellDef> Attachment </th>
+                                <td mat-cell *matCellDef="let element">
+
+                                    <input type="file" (change)="uploadFile($event, element)" hidden #fileInput>
+                                    <button mat-button (click)="fileInput.click()"> <mat-icon>upload</mat-icon></button>
+                                </td>
+                            </ng-container>
+
+                            <!-- REMARKS Column -->
+                            <ng-container matColumnDef="remarks">
+                                <th mat-header-cell *matHeaderCellDef> REMARKS </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <mat-icon (click)="editAttachment(element)">edit</mat-icon>
+                                    <mat-icon (click)="deleteRow(element)">delete</mat-icon>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+
                 </div>
 
-                <div class="row mt-3">
-                    <div class="col">
-                        <button type="button" class="btn btn-success">Save</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                <div class="w-100 mt-3 row">
+                    <div class="col-6">
+
+                        <textarea rows="6" id="remarks" placeholder="Auditee Remarks" class="form-control w-100" [(ngModel)]="remarks"></textarea>
+                    </div>
+                    <div class="col-6 d-flex gap-3">
+                        <button class="remarkbtn" (click)="save()">SAVE</button>
+                        <button class="remarkbtn" (click)="submit()">SUBMIT</button>
+                        <button class="remarkbtn" (click)="approve()">APPROVE</button>
                     </div>
                 </div>
             </div>

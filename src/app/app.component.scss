@@ -182,7 +182,9 @@ table {
 
 .mat-mdc-chip-action-label,
 .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__checkmark {
-    color: rgb(254, 210, 130) !important;
+    color: #f5a512 !important;
+    margin: 0;
+    padding: 0;
 }
 
 .frequency-input {
@@ -226,4 +228,131 @@ table {
 
 .hidden-option {
     display: none;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button.mat-icon-button {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.auditee {
+    margin-right: auto;
+    font-weight: bold;
+}
+
+.date-accept {
+    display: flex;
+    align-items: center;
+}
+
+.date-picker {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.date-picker mat-icon {
+    margin-right: 5px;
+}
+
+.process-po {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.icon-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.tablecontainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+button {
+    align-self: flex-end;
+}
+
+.mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,
+.mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,
+.mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background,
+.mdc-checkbox:hover .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,
+.mdc-checkbox:hover .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,
+.mdc-checkbox:hover .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+    border-color: #3f51b5 !important;
+    background-color: #0d6efd !important;
+}
+
+.remarkbtn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 3px;
+    margin-left: 10px;
+    border: 1px solid #00ced1;
+    cursor: pointer;
+    background-color: #f1fffa;
+    font-weight: bold;
+}
+
+.details-section {
+    background-color: #ffffff;
+    margin: 10px 0 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.col {
+    flex: 1;
+    margin-right: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+span {
+    margin-left: 5px;
+}
+
+.mdc-text-field--outlined .mat-mdc-form-field-infix,
+.mdc-text-field--no-label .mat-mdc-form-field-infix {
+    padding: 0;
+    padding-top: 9px !important;
 }
