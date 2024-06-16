@@ -273,7 +273,46 @@ radio_button_checked
                     </div>
 
                     <div class="container">
-                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <div class="toolbar d-flex justify-content-between">
+                            <div>
+                                <span class=" material-icons ">first_page</span>
+                                <span class="material-icons ">chevron_left</span>
+                                <input type="text " style="width: 60px;" value="1 - 1/1 " readonly>
+                                <span class="material-icons ">chevron_right</span>
+                                <span class="material-icons ">last_page</span>
+                                <span class="material-icons ">zoom_in</span>
+                                <span class="material-icons ">zoom_out</span>
+                                <span class="material-icons ">content_copy</span>
+                                <span class="material-icons ">content_cut</span>
+                                <span class="material-icons ">settings</span>
+                                <span class="material-icons ">auto_fix_normal</span>
+                                <span class="material-icons ">filter_list</span>
+                                <span class="material-icons ">close</span>
+                            </div>
+
+                            <div>
+
+                                <!-- New toolbar section -->
+                                <span class="material-icons ">bar_chart</span>
+                                <span class="material-icons ">html</span>
+                                <span class="material-icons ">insert_drive_file</span>
+                                <span class="material-icons ">content_paste</span>
+                                <span class="material-icons ">description</span>
+                                <span class="material-icons ">clear_all</span>
+                                <span class="material-icons ">fullscreen</span>
+                                <span class="material-icons ">push_pin</span>
+                                <span class="material-icons ">view_list</span>
+                                <span class="material-icons ">swap_vert</span>
+                                <span class="material-icons ">clear</span>
+
+                                <select>
+                                <option value="all ">All</option>
+                            </select>
+                                <input type="text " placeholder="Search ">
+                                <span class="material-icons ">search</span>
+                            </div>
+                        </div>
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-0">
                             <!-- Checkbox Column -->
                             <ng-container matColumnDef="select">
                                 <th mat-header-cell *matHeaderCellDef>
@@ -346,17 +385,26 @@ radio_button_checked
                                 <th mat-header-cell *matHeaderCellDef> Attachment </th>
                                 <td mat-cell *matCellDef="let element">
 
-                                    <input type="file" (change)="uploadFile($event, element)" hidden #fileInput>
-                                    <button mat-button (click)="fileInput.click()"> <mat-icon>upload</mat-icon></button>
+                                    <!-- Edit Icon (Trigger file input) -->
+                                    <mat-icon (click)="fileInput.click()">edit</mat-icon>
+                                    <input type="file" (change)="editAttachment($event, element)" hidden #fileInput>
+
+                                    <!-- Delete Icon -->
+                                    <mat-icon (click)="deleteAttachment(element)">delete</mat-icon>
+
+                                    <!-- Display the attachment name -->
+                                    <span>{{ element.attachment ? element.attachment.name : 'No file attached' }}</span>
+
                                 </td>
                             </ng-container>
+
+
 
                             <!-- REMARKS Column -->
                             <ng-container matColumnDef="remarks">
                                 <th mat-header-cell *matHeaderCellDef> REMARKS </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <mat-icon (click)="editAttachment(element)">edit</mat-icon>
-                                    <mat-icon (click)="deleteRow(element)">delete</mat-icon>
+                                <td mat-cell *matCellDef="let element" (click)="openRemarkModal(element)">
+                                    {{element.remarks}}
                                 </td>
                             </ng-container>
 
@@ -382,3 +430,25 @@ radio_button_checked
         </div>
     </div>
 </main>
+
+
+<div class="modal fade" id="remarkModal" tabindex="-1" aria-labelledby="remarkModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="remarkModalLabel">Add Remark</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="remark" class="form-label">Remark</label>
+
+                    <textarea class="form-control" name="" [(ngModel)]="currentRemark" id="" cols="30" rows="10"></textarea> </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="updateRemark()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

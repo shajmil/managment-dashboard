@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { SelectionModel } from '@angular/cdk/collections';
 interface Element {
   sno: number;
@@ -28,10 +30,13 @@ interface Element {
 
 const ELEMENT_DATA: Element[] = [  // Add more rows here as needed
 ];
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    MatToolbarModule,
     CommonModule,
     FormsModule,
     MatSelectModule, 
@@ -73,6 +78,11 @@ export class AppComponent {
 
   toggleMh() {
     this.mh = !this.mh;
+    if (this.mh) {
+      this.displayedColumns = ['select', 'sno', 'task', 'type', 'desc', 'fqy', 'spare', 'qty', 'tool', 'mh', 'attachment', 'remarks'];
+    } else {
+      this.displayedColumns = ['select', 'sno', 'task', 'type', 'desc', 'fqy', 'spare', 'qty', 'tool', 'attachment', 'remarks'];
+    }
   }
   regulators: { [key: string]: string[] } = {
     'A320-212': ['Regulator1', 'EASA'],
@@ -132,6 +142,11 @@ export class AppComponent {
     this.filteredRegulators = this.regulators[this.fleets[0]];
     this.filteredStations = this.stations[this.fleets[0]];
     this.filteredTasks = this.tasks[this.stations[this.fleets[0]][0]];
+    if (this.mh) {
+      this.displayedColumns = ['select', 'sno', 'task', 'type', 'desc', 'fqy', 'spare', 'qty', 'tool', 'mh', 'attachment', 'remarks'];
+    } else {
+      this.displayedColumns = ['select', 'sno', 'task', 'type', 'desc', 'fqy', 'spare', 'qty', 'tool', 'attachment', 'remarks'];
+    }
   }
 clr(){
   this.filteredRegulators = this.regulators[this.fleets[0]];
@@ -180,7 +195,7 @@ this.selectedFleets=[]
       spare: '',
       qty: 0,
       tool: '',
-      mh: '',
+      mh: this.generateRandomString(6), // Generate 6 random characters
       attachment: '',
       remarks: ''
     };
@@ -189,7 +204,15 @@ this.selectedFleets=[]
     this.dataSource.data = [...this.dataSource.data, newData];
     this.createsection=false;
   }
-
+  generateRandomString(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
@@ -218,11 +241,21 @@ this.selectedFleets=[]
       // Handle the file upload logic here
     }
   }
-
-  editAttachment(element: Element) {
-    console.log(`Editing attachment for ${element.task}`);
-    // Handle the edit logic here
+  editAttachment(event: Event, element: any) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const newFile = input.files[0];
+      console.log(`Editing attachment for ${element.task}:`, newFile.name);
+     element.attachment = newFile;
+    }
   }
+  deleteAttachment(element: any) {
+    // Implement logic to delete attachment for the given element.
+    element.attachment = null; // Assuming 'attachment' is the property holding the file reference.
+    console.log(`Attachment deleted for ${element.task}`);
+  }
+  
+  
   save() {
     this.clr();
     this.createsection=true;
@@ -247,6 +280,24 @@ this.selectedFleets=[]
 
     // Implement the logic to approve the remarks
     console.log('Approving remarks:', this.remarks);
+  }
+  currentRemark: string = '';
+  currentElement: TaskData | null = null;
+  private remarkModal: any;
+  openRemarkModal(element: TaskData): void {
+    this.currentElement = element;
+    this.currentRemark = element.remarks;
+    this.remarkModal = new bootstrap.Modal(document.getElementById('remarkModal'));
+    this.remarkModal.show();
+  }
+
+  updateRemark(): void {
+    if (this.currentElement) {
+      this.currentElement.remarks = this.currentRemark;
+      this.remarkModal.hide();
+      this.currentElement = null;
+      this.currentRemark = '';
+    }
   }
 }
 export interface TaskData {

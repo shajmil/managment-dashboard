@@ -356,3 +356,44 @@ span {
     padding: 0;
     padding-top: 9px !important;
 }
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 1px solid #ccc;
+}
+
+.toolbar .material-icons {
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 18px;
+    color: #333;
+}
+
+.toolbar input[type="text"],
+.toolbar select {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 0 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+.toolbar input[type="text"] {
+    width: 50px;
+    text-align: center;
+}
+
+.toolbar select {
+    width: 60px;
+}
+
+.toolbar input[type="text"][placeholder="Search"] {
+    width: 80px;
+}
